@@ -12,3 +12,8 @@ Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 202
 ### Dynamic peak shaving limit determination using specific time window average formula
 
 ![Alt text](Images/Formula_peakreduction.png)
+
+### Results
+
+![Alt text](Images/Results_peakreduction.png)
+
