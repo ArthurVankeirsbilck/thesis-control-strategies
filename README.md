@@ -3,7 +3,7 @@
 
 Dynamic peak shaving limit determination using specific time window average.
 
-Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, . This logic will be converted into an object-oriented Golang library.
+Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
 
 ### Schematic
 
