@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import textwrap3 as tw
 import numpy as np
 
 Pglimitinitial = 1500
@@ -44,18 +43,19 @@ def peak_reduction(Pl, time, SOC, Eb, lijst):
     return SOC, Eb, Pbattery, Pl-Pbattery
 
 df = pd.read_csv('data_1m_denhenk.csv', delimiter=',')
-print(df.shape)
 df.columns = ['indx', 'Time', '_value']
-print(df)
 values = df['_value'].tolist()
-verbruik = []
+
 SOC = 100
 Eb = 13500
+
 Phouselist = []
 Pbatterylist = []
 SOClist = []
 Eblist = []
 avgpieklist = []
+verbruik = []
+
 def Average(lst):
     return sum(lst) / len(lst)
 
