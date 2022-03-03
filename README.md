@@ -16,7 +16,7 @@ As a matter of precaution, the logic chooses to already peak-shave when $P_l$ > 
 
 ![Alt text](Images/Formula_peakreduction.png)
 
-This formula will be applied to calculate the $n$ next steps in a time window, thus setting the shaving limit in such a way that per time window the target is not exceeded.
+This formula will be applied to calculate the $n$ next steps in a time window, thus setting the shaving limit in such a way that per time window the target is not exceeded - dynamic peak shaving limit determination using specific time window average.
 
 ### Results
 
