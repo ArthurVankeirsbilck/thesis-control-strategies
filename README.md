@@ -22,6 +22,8 @@ Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 202
 
 Basic control for charging and discharging a battery. Charging is done in function of the produced energy of the PV-installation. Discharging occurs as soon as $P_l$ > $P_pv$.
 
+Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
+
 ### Charging
 
 ![Alt text](Images/Schematic_arbitrage_charging.png)
