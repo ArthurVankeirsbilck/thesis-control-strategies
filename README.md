@@ -6,6 +6,8 @@ Dynamic peak shaving limit determination using specific time window average.
 
 Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
 
+As a matter of precaution, the logic chooses to already peak-shave when Pl > Pg,limit on the first timestep of each timewindow. Because it is uncertain whether a high peak will occur within that time window which cannot be handled by the battery due to the max power output restrictions. By doing so, the limit does not need to be lower than the initial limit.
+
 ### Schematic
 
 ![Alt text](Images/Schematic_peakreduction.png)
@@ -38,4 +40,6 @@ Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 202
 ![Alt text](Images/Results_arbitrage.png)
 
 ![Alt text](Images/Results2_arbitrage.png)
+
+## Combination peak-shaving and arbitrage
 

@@ -1,13 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+Pglimitlist = []
+Pglimitinitial = 150
+f = open("myfile.txt", "w")
 
-Pglimitinitial = 1500
 def dynamic_peak_shave_limit(lijst):
     Pglimit = ((Pglimitinitial*15)-sum(lijst))/(15-(len(lijst)-1))
     if Pglimit < 0:
         Pglimit = 0
-    print(Pglimit)
     return Pglimit
 
 test=[]
@@ -42,8 +43,8 @@ def peak_reduction(Pl, time, SOC, Eb, lijst):
     
     return SOC, Eb, Pbattery, Pl-Pbattery
 
-df = pd.read_csv('data_1m_denhenk.csv', delimiter=',')
-df.columns = ['indx', 'Time', '_value']
+df = pd.read_csv('datadata.csv', delimiter=',')
+df.columns = ['_value'] #'indx', 'Time', 
 values = df['_value'].tolist()
 
 SOC = 100
@@ -79,6 +80,7 @@ avgpieklistshaved = list(map(Average, lijst))
 lijst = [values[i:i + n] for i in range(0, len(values), n)]
 avgpieklistnotshaved = list(map(Average, lijst))
 
+print(Pglimitlist[600:635])
 
 fig, axs = plt.subplots(3, 2)
 axs[0, 0].plot(Phouselist, label="Consumption [kWh]")
@@ -111,9 +113,9 @@ axs[2, 1].legend(loc="upper left")
 x, y, text = 102, -100, "$P_{g,limit}=$"+"{}\n".format(Pglimitinitial)+"$P_{max,wo,PS}=$"+"{}\n".format(round(max(avgpieklistnotshaved)))+"$P_{max,PS}=$"+"{}".format(round(max(avgpieklistshaved)))
 axs[2, 1].text(x, y, text)
 plt.show()
-print(values[:15])
 
-print(test[:15])
+for v in avgpieklistshaved:
+    f.write(str(v)+'\n')
 # ax = plt.gca()
 # plt.plot(test, color = 'r', linestyle = '--')
 # plt.plot(values, alpha=0.8)
@@ -130,3 +132,5 @@ print(test[:15])
 # plt.plot(avgpieklistnotshaved)
 # plt.axhline(y = Pglimitinitial, color = 'r', linestyle = '--')
 # plt.show()
+
+f.close()
