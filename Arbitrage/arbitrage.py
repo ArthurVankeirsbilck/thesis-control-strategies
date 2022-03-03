@@ -4,11 +4,29 @@ import matplotlib.pyplot as plt
 pv = pd.read_csv('pv_1m_denhenk.csv', delimiter=',')
 df = pd.read_csv('data_1m_denhenk.csv', delimiter=',')
 
-
 values = df['_value'].tolist()
 pvvalues = pv['_value'].tolist()
 
-
+def discharge_control(Pl, time, Eb, SOC):
+    Pbatterydchrgmax = 5000
+    Ebmax = 13500
+    Pgridimport = 0
+    SOCmin = 10
+    Pbatterydchrg = 0
+    if SOC > SOCmin:
+        if Pl > Pbatterydchrgmax:
+            Pbatterydchrg = Pbatterydchrgmax
+            Pgridimport = Pl - Pbatterydchrg
+            Eb = Eb - (Pbatterydchrg*time)
+            SOC = (Eb/Ebmax)*100
+        else:
+            Pbatterydchrg = Pl
+            Eb = Eb - (Pbatterydchrg*time)
+            SOC = (Eb/Ebmax)*100
+    else:
+        print('Energy Depletion Failure')
+        Pgridimport = Pl
+    return SOC, Pbatterydchrg, Pgridimport, Eb
 
 def arbitrage(Ppv, Pl, SOC, time, Eb):
     Pbatterychgmax = 5000
@@ -16,40 +34,52 @@ def arbitrage(Ppv, Pl, SOC, time, Eb):
     Pgridexp = 0
     SOCmax = 90
     Ebmax = 13500
+    Pbatterydchrg = 0
+    Pgridimport = 0
 
     if Ppv > Pl:
         if SOC < SOCmax:
             if (Ppv-Pl) > Pbatterychgmax:
                 Pbatterychg = Pbatterychgmax
-                Eb = Eb + (Pbatterychg*time)
-                SOC = (Eb/Ebmax)*100  
-                Pgridexp = Ppv-Pbatterychg
+                SOCnext = ((Eb + (Pbatterychg*time))/Ebmax)*100 
+                if SOCnext > SOCmax:
+                    print('Battery full for next step')
+                else:
+                    Eb = Eb + (Pbatterychg*time)
+                    SOC = (Eb/Ebmax)*100  
+                    Pgridexp = Ppv-Pbatterychg
             else:
                 Pbatterychg = Ppv-Pl
-                Eb = Eb + (Pbatterychg*time)
-                SOC = (Eb/Ebmax)*100  
+                SOCnext = ((Eb + (Pbatterychg*time))/Ebmax)*100
+                if SOCnext > SOCmax:
+                    print('Battery full for next step')
+                else:
+                    Eb = Eb + (Pbatterychg*time)
+                    SOC = (Eb/Ebmax)*100  
         else:
             print('Battery Full')
     else:
-        print('Standby')
-    
+        SOC, Pbatterydchrg, Pgridimport, Eb = discharge_control(Pl, time, Eb, SOC)
 
+    return SOC, Pbatterychg, Pbatterydchrg*-1, Pgridimport, Pgridexp, Eb
 
-    return SOC, Pbatterychg, Pgridexp, Eb
-
-SOC = 0
-Eb = 0
+SOC = 10
+Eb = 1350
 Pbatterychglist = []
+Pbatterydchglist = []
 SOClist = []
 pgridexplist = []
+Pgridimplist = []
 
 for pv, v in zip(pvvalues, values):
-    SOC, Pbatterychg, Pgridexp, Eb = arbitrage(pv, v, SOC, 1/60, Eb)
+    SOC, Pbatterychg,Pbatterydchrg,Pgridimport, Pgridexp, Eb= arbitrage(pv, v, SOC, 1/60, Eb)
     SOClist.append(SOC)
     Pbatterychglist.append(Pbatterychg)
     pgridexplist.append(Pgridexp)
+    Pbatterydchglist.append(Pbatterydchrg)
+    Pgridimplist.append(Pgridimport)
 
-fig, axs = plt.subplots(2, 2)
+fig, axs = plt.subplots(3, 2)
 axs[0, 0].plot(values, label="Consumption [kWh]")
 axs[0, 0].plot(pvvalues, label="Production [kWh]")
 axs[0, 0].set_title('Input data')
@@ -60,14 +90,29 @@ axs[0, 1].set_title('SOC')
 axs[0, 1].legend(loc="upper left")
 
 axs[1, 0].plot(Pbatterychglist, 'tab:green', label="Battery Charge [kWh]")
-axs[1, 0].set_title('Battery')
+axs[1, 0].set_title('Battery Charge')
 axs[1, 0].legend(loc="upper left")
 
 axs[1, 1].plot(pgridexplist, 'tab:red', label="Grid Export [kWh]")
 axs[1, 1].set_title('Grid Export')
 axs[1, 1].legend(loc="upper left")
 
+axs[2, 0].plot(Pgridimplist, 'tab:blue', label="Grid Import [kWh]")
+axs[2, 0].set_title('Grid Import')
+axs[2, 0].legend(loc="upper left")
+
+axs[2, 1].plot(Pbatterydchglist, 'tab:purple', label="Battery Disharge [kWh]")
+axs[2, 1].set_title('Battery Disharge ')
+axs[2, 1].legend(loc="upper left")
+
 plt.show()
 
+fig, ax1 = plt.subplots()
 
- 
+ax2 = ax1.twinx()
+ax1.set_title('Combination graph')
+ax1.plot(Pgridimplist, 'g-', label="Grid Import [kWh]")
+ax2.plot(SOClist, 'b-', label="SOC [%]")
+ax1.legend(loc="upper left")
+ax2.legend(loc="upper right")
+plt.show()
