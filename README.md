@@ -24,15 +24,15 @@ Basic control for charging and discharging a battery. Charging is done in functi
 
 ### Charging
 
-![Alt text](Images/Schematic_arbitrage_charging)
+![Alt text](Images/Schematic_arbitrage_charging.png)
 
 ### Discharging
 
-![Alt text](Images/Schematic_arbitrage_discharging)
+![Alt text](Images/Schematic_arbitrage_discharging.png)
 
 ### Results
 
-![Alt text](Images/Results_arbitrage)
+![Alt text](Images/Results_arbitrage.png)
 
-![Alt text](Images/Results2_arbitrage)
+![Alt text](Images/Results2_arbitrage.png)
 
