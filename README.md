@@ -26,6 +26,7 @@ The graph on the bottom right shows that the average quarterly peak has been red
 ### Results: Dynamic Library Golang
 
 ![Alt text](Images/Results_peakreduction_Go.png)
+![Alt text](Images/Results_peakreduction_Go1.png)
 ![Alt text](Images/Results_peakreduction_Go2.png)
 ![Alt text](Images/Results_peakreduction_Go3.png)
 ![Alt text](Images/Results_peakreduction_Go4.png)
