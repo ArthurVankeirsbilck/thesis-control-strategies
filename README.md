@@ -21,7 +21,7 @@ This formula will be applied to calculate the $n$ next steps in a time window, t
 ### Results: Python
 
 ![Alt text](Images/Results_peakreduction.png)
-The graph on the bottom right shows that the average quarterly peak has been reduced to a maximum of 1500 kW. There is no hard limit to 1500 kW which would cause too much unnecessary peakshaving to occur. For each time step, the system calculates the limit of peak reduction required to reach a target maximum peak within a given time window (in our case, fifteen minutes). This allows the peak to be optimally reduced.
+The graph on the bottom right shows that the average quarterly peak has been reduced to a maximum of 1500 kW. There is no hard limit to 1500 kW which would cause too much unnecessary peakshaving to occur. For each time step, the system calculates the limit of peak reduction required to reach a target maximum peak within a given time window (in our case, fifteen minutes). This allows the peak to be optimally reduced. 
 
 ### Results: Dynamic Library Golang
 
@@ -35,7 +35,7 @@ This library accomplishes practically the same task as the python environment bu
 ![Alt text](Images/Results_peakreduction_Go3.png)
 ![Alt text](Images/Results_peakreduction_Go4.png)
 
-The graph below also shows a feature that has not yet been added in the python test environment. Namely danymic peak target selection. If for some reason (battery depleted, too high consumption causing the battery to be unable to handle the peak) a quarter peak cannot be lowered to the target, the remaining days of that month will have the target raised to that peak. This is because the customer will already be paying this peak, of course it remains desirable to peakshave at that limit, preventing the further increase of the cost.
+The graph below also shows a feature that has not yet been added in the python test environment. Namely danymic peak target selection. If for some reason (battery depleted, too high consumption causing the battery to be unable to handle the peak) a quarter peak cannot be lowered to the target, the remaining days of that month will have the target raised to that peak. This is because the customer will already be paying this peak, of course it remains desirable to peakshave at that limit, preventing the further increase of the cost. This occurance can be observed between 02/27 and 02/28.
 
 ![Alt text](Images/Results_peakreduction_Go5.png)
 
