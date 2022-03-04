@@ -2,8 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 Pglimitlist = []
-Pglimitinitial = 150
-f = open("myfile.txt", "w")
+Pglimitinitial = 1500
 
 def dynamic_peak_shave_limit(lijst):
     Pglimit = ((Pglimitinitial*15)-sum(lijst))/(15-(len(lijst)-1))
@@ -47,8 +46,8 @@ df = pd.read_csv('datadata.csv', delimiter=',')
 df.columns = ['_value'] #'indx', 'Time', 
 values = df['_value'].tolist()
 
-SOC = 100
-Eb = 13500
+SOC = 90
+Eb = 13500*(SOC/100)
 
 Phouselist = []
 Pbatterylist = []

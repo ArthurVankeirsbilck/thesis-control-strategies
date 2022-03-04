@@ -1,11 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-pv = pd.read_csv('pv_1m_denhenk.csv', delimiter=',')
-df = pd.read_csv('data_1m_denhenk.csv', delimiter=',')
+pv = pd.read_csv('pvhenk.csv', delimiter=',')
+df = pd.read_csv('valueshenk.csv', delimiter=',')
 
 values = df['_value'].tolist()
 pvvalues = pv['_value'].tolist()
+
 
 def discharge_control(Pl, time, Eb, SOC):
     Pbatterydchrgmax = 5000
@@ -71,8 +72,8 @@ SOClist = []
 pgridexplist = []
 Pgridimplist = []
 
-for pv, v in zip(pvvalues, values):
-    SOC, Pbatterychg,Pbatterydchrg,Pgridimport, Pgridexp, Eb= arbitrage(pv, v, SOC, 1/60, Eb)
+for solar, v in zip(pvvalues, values):
+    SOC, Pbatterychg,Pbatterydchrg,Pgridimport, Pgridexp, Eb= arbitrage(solar, v, SOC, 1/60, Eb)
     SOClist.append(SOC)
     Pbatterychglist.append(Pbatterychg)
     pgridexplist.append(Pgridexp)
@@ -116,3 +117,8 @@ ax2.plot(SOClist, 'b-', label="SOC [%]")
 ax1.legend(loc="upper left")
 ax2.legend(loc="upper right")
 plt.show()
+
+print(pv.iloc[480])
+print(pv.iloc[1019])
+print(pv.iloc[1020])
+print(pv.iloc[1919])

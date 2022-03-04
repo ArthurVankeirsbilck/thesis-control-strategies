@@ -4,7 +4,7 @@
 
 Dynamic peak shaving limit determination using specific time window average.
 
-Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
+Tested on a historical dataset within a timerange of 2022-02-26T00:00:00Z to 2022-02-27T23:59:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
 
 As a matter of precaution, the logic chooses to already peak-shave when $P_l$ > $P_g$,limit on the first timestep of each timewindow. Because it is uncertain whether a high peak will occur within that time window which cannot be handled by the battery due to the max power output restrictions. By doing so, the limit does not need to be lower than the initial limit.
 
@@ -18,10 +18,14 @@ As a matter of precaution, the logic chooses to already peak-shave when $P_l$ > 
 
 This formula will be applied to calculate the $n$ next steps in a time window, thus setting the shaving limit in such a way that per time window the target is not exceeded - dynamic peak shaving limit determination using specific time window average.
 
-### Results
+### Results: Python
 
 ![Alt text](Images/Results_peakreduction.png)
 The graph on the bottom right shows that the average quarterly peak has been reduced to a maximum of 1500 kW. There is no hard limit to 1500 kW which would cause too much unnecessary peakshaving to occur. For each time step, the system calculates the limit of peak reduction required to reach a target maximum peak within a given time window (in our case, fifteen minutes). This allows the peak to be optimally reduced.
+
+### Results: Dynamic Library Golang
+
+![Alt text](Images/Results_peakreduction_Go.png)
 
 ## Arbitrage
 

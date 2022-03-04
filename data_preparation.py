@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('pv_1m_denhenk.csv', delimiter=',', skiprows=3)
+df = pd.read_csv('pv.csv', delimiter=',', skiprows=3)
 df.drop(['_start', 'result', 'table', 'uuid', 'unit', 'location', 'Unnamed: 0', '_stop', 'device', '_measurement', '_field'], axis=1, inplace=True)
 print(df)
 
@@ -13,4 +13,4 @@ plt.show()
 print(df.head())
 print(df.tail())
 
-df.to_csv('voorthomas.csv', encoding='utf-8')
+df.to_csv('pvhenkmonth.csv', encoding='utf-8')
