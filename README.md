@@ -25,7 +25,9 @@ The graph on the bottom right shows that the average quarterly peak has been red
 
 ### Results: Dynamic Library Golang
 
-In order to develop a scalable product, it was decided to develop a fully object-oriented Golang Library in addition to the python test environment to ensure quality, scalability and responsiveness.
+In order to develop a scalable product, it was decided to develop a fully object-oriented Golang Library in addition to the python test environment to ensure quality, scalability and responsiveness. 
+
+This library was tested using 7 days of data at the end of February 2022. Data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
 
 This library accomplishes practically the same task as the python environment but allows you to modify or add controls in a more convenient way. Which is a must to be able to easily adjust possible bugs or errors in the controller during the testing phase.
 
