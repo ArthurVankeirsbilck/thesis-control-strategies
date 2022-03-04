@@ -25,6 +25,10 @@ The graph on the bottom right shows that the average quarterly peak has been red
 
 ### Results: Dynamic Library Golang
 
+In order to develop a scalable product, it was decided to develop a fully object-oriented Golang Library in addition to the python test environment to ensure quality, scalability and responsiveness.
+
+This library accomplishes practically the same task as the python environment but allows you to modify or add controls in a more convenient way.
+
 ![Alt text](Images/Results_peakreduction_Go.png)
 ![Alt text](Images/Results_peakreduction_Go1.png)
 ![Alt text](Images/Results_peakreduction_Go2.png)
