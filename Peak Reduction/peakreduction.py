@@ -113,8 +113,6 @@ x, y, text = 102, -100, "$P_{g,limit}=$"+"{}\n".format(Pglimitinitial)+"$P_{max,
 axs[2, 1].text(x, y, text)
 plt.show()
 
-for v in avgpieklistshaved:
-    f.write(str(v)+'\n')
 # ax = plt.gca()
 # plt.plot(test, color = 'r', linestyle = '--')
 # plt.plot(values, alpha=0.8)
@@ -131,5 +129,3 @@ for v in avgpieklistshaved:
 # plt.plot(avgpieklistnotshaved)
 # plt.axhline(y = Pglimitinitial, color = 'r', linestyle = '--')
 # plt.show()
-
-f.close()

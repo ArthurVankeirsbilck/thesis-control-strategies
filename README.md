@@ -27,13 +27,16 @@ The graph on the bottom right shows that the average quarterly peak has been red
 
 In order to develop a scalable product, it was decided to develop a fully object-oriented Golang Library in addition to the python test environment to ensure quality, scalability and responsiveness.
 
-This library accomplishes practically the same task as the python environment but allows you to modify or add controls in a more convenient way.
+This library accomplishes practically the same task as the python environment but allows you to modify or add controls in a more convenient way. Which is a must to be able to easily adjust possible bugs or errors in the controller during the testing phase.
 
 ![Alt text](Images/Results_peakreduction_Go.png)
 ![Alt text](Images/Results_peakreduction_Go1.png)
 ![Alt text](Images/Results_peakreduction_Go2.png)
 ![Alt text](Images/Results_peakreduction_Go3.png)
 ![Alt text](Images/Results_peakreduction_Go4.png)
+
+The graph below also shows a feature that has not yet been added in the python test environment. Namely danymic peak target selection. If for some reason (battery depleted, too high consumption causing the battery to be unable to handle the peak) a quarter peak cannot be lowered to the target, the remaining days of that month will have the target raised to that peak. This is because the customer will already be paying this peak, of course it remains desirable to peakshave at that limit, preventing the further increase of the cost.
+
 ![Alt text](Images/Results_peakreduction_Go5.png)
 
 ## Arbitrage
