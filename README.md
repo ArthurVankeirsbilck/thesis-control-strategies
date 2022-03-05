@@ -47,6 +47,8 @@ Basic control for charging and discharging a battery. Charging is done in functi
 
 Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 2022-02-27T00:00:00Z, data is drawn from a household in Zwevegem, Belgium. This logic will be converted into an object-oriented Golang library.
 
+![Alt text](Images/Calculations_Arbitrage.png)
+
 ### Charging
 
 ![Alt text](Images/Schematic_arbitrage_charging.png)
@@ -63,3 +65,4 @@ Tested on a historical dataset within a timerange of 2022-02-26T00:01:00Z to 202
 
 ## Combination peak-shaving and arbitrage
 
+The basic combination of peak-shaving and arbitrage was made directly using the Golang Library.
