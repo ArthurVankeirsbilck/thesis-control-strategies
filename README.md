@@ -1,5 +1,7 @@
 # Control Strategy development
 
+All formulas, diagrams are self-developed, if not, the source is listed.
+
 ## Peak reduction:
 
 Dynamic peak shaving limit determination using specific time window average.
